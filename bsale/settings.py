@@ -1,3 +1,6 @@
+# https://djangostars.com/blog/configuring-django-settings-best-practices/#header1
+
+# https://gomakethings.com/data-reactivity-with-vanilla-js/
 """
 Django settings for bsale project.
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +81,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'bsale_test',
+        # 'USER': 'bsale_test',
+        # 'PASSWORD': 'bsale_test',
+        # 'HOST': 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
+        # 'PORT': '3306',
     }
 }
 
