@@ -1,12 +1,90 @@
+{% load static %}
+{% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
+     <title>index</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+     <!-- local libraries css  -->
+     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
-     index
+     <header>
+          <div class="navbar navbar-dark bg-dark shadow-sm">
+               <div class="container">
+
+                    <a href="/" class="navbar-brand d-flex align-items-center">
+                         <img src="https://lh3.googleusercontent.com/a-/AOh14GiLe4eQyCJTALgLOmECjAIZnGVktwJOxdbFCuRh=s70-p-k-rw-no" alt="mdo"
+                              width="32" height="32" class="rounded-circle">
+                         <strong class="mx-2">Bsale Store</strong>
+                    </a>
+               </div>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-center py-3" style="grid-template-columns: 1fr 2fr;">
+               <div class="d-flex align-items-center">
+                    <div class="w-200 me-5">
+                         <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Buscar..." aria-label="Search" id="search">
+                              <button class="btn btn-outline-secondary input-group-text" id="btnSubmit">
+                                   <i class="bi bi-search"></i></button>
+                         </div>
+                    </div>
+                    <div class="flex-shrink-0 dropdown">
+                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Categorias
+                         </button>
+                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownMenuButton1" id="category_list">
+                              <li><a class="dropdown-item" href="#">a item link</a></li>
+                         </ul>
+                    </div>
+               </div>
+          </div>
+     </header>
+     <main>
+          <div class="album py-5 bg-light">
+               <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center" id="products_list">
+                         <div class="col">
+                              <div class="card mb-4 rounded-3 shadow-sm border-orange">
+                                   <div class="card-header py-3 text-white bg-orange border-orange">
+                                        <h4 class="my-0 fw-normal">nombre</h4>
+                                   </div>
+                                   <img class="card-img-top" width="100%" height="225" src="http://www.w3.org/2000/svg">
+                                   <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                             <h3 class="card-title pricing-card-title">$29</h3>
+                                             <small class="text-muted fw-light">30</small>
+                                        </div>
+                                        <button type="button" class="w-100 btn btn-lg btn-orange">Detalle</button>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </main>
+
+     <footer class="text-muted py-5">
+          <div class="container">
+               <p class="float-end mb-1">
+                    <a href="#" class="btn-top">back to top</a>
+               </p>
+               <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+               <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our .</p>
+          </div>
+     </footer>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+     <script src="{% static 'js/apps.js' %}"></script>
 </body>
+
 </html>
