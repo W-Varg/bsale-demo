@@ -1,12 +1,77 @@
+{% load static %}
+{% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
+     <title>index</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+     <!-- local libraries css  -->
+     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
-     index
+     <header>
+          <div class="navbar navbar-dark bg-dark shadow-sm">
+               <div class="container">
+
+                    <a href="/" class="navbar-brand d-flex align-items-center">
+                         <img src="https://lh3.googleusercontent.com/a-/AOh14GiLe4eQyCJTALgLOmECjAIZnGVktwJOxdbFCuRh=s70-p-k-rw-no" alt="mdo"
+                              width="32" height="32" class="rounded-circle">
+                         <strong class="mx-2">Bsale Store</strong>
+                    </a>
+               </div>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-center py-3" style="grid-template-columns: 1fr 2fr;">
+               <div class="d-flex align-items-center">
+                    <div class="w-200 me-5">
+                         <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Buscar..." aria-label="Search" id="search">
+                              <button class="btn btn-outline-secondary input-group-text" id="btnSubmit">
+                                   <i class="bi bi-search"></i></button>
+                         </div>
+                    </div>
+                    <div class="flex-shrink-0 dropdown">
+                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Categorias
+                         </button>
+                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownMenuButton1" id="category_list">
+                              <li><a class="dropdown-item" href="#">a item link</a></li>
+                         </ul>
+                    </div>
+               </div>
+          </div>
+     </header>
+     <main>
+          <div class="album py-5 bg-light">
+               <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-center" id="products_list">
+                    </div>
+                    <nav aria-label="Page navigation example">
+                         <ul class="pagination justify-content-center" id="pagination">
+                         </ul>
+                    </nav>
+               </div>
+          </div>
+     </main>
+
+     <footer class="text-muted py-5">
+          <div class="container">
+               <!-- <p class="float-end mb-1"> <button id="scrollToTopBtn">☝️</button></p> -->
+               <p class="mb-1">A example for bsale &copy; using Bootstrap for designs and python with django in backend!</p>
+               <p class="mb-0">The code? <a href="/"> Check to code</a> by W-Varg .</p>
+          </div>
+     </footer>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+     <script src="{% static 'js/apps.js' %}"></script>
 </body>
+
 </html>
