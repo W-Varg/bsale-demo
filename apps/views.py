@@ -24,11 +24,6 @@ class ProductFilter(filters.FilterSet):
     class Meta:
         model = Product
         fields = ['category', 'name']
-        # fields = {
-        #     'name': ('icontains',),
-        #     'category': ['exact'],
-        #     'price': ['lte', 'gte']
-        # }
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -37,6 +32,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    ordering = ['id']
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -48,11 +44,13 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = ProductFilter
+    ordering = ['id']
 
 
 # class MyPostViewSet(viewsets.BaseModelViewSet):
 class MyPostViewSet(viewsets.GenericViewSet):
     """ Custom viewset for filter sending post data from FRON-END"""
+
     def post(self, request, *args, **kwargs):
         queryset = self.queryset
         filter_params = request.DATA or request.GET

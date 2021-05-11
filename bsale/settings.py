@@ -13,6 +13,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,18 +84,17 @@ WSGI_APPLICATION = 'bsale.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'bsale_test',
-        # 'USER': 'bsale_test',
-        # 'PASSWORD': 'bsale_test',
-        # 'HOST': 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
-        # 'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bsale_test',
+        'USER': 'bsale_test',
+        'PASSWORD': 'bsale_test',
+        'HOST': 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
-
-
+# DATABASE_URL=mysql://bsale_test:bsale_test@mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com:3306/bsale_test
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -144,3 +144,5 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'PAGE_SIZE': 12,
 }
+django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
