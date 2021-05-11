@@ -1,7 +1,12 @@
+// current element from page
+var rootElement = document.documentElement;
+
 // token for get requests of api
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 // base link api
 const baseUrl = window.location.href + 'api/'
+// paginate for size
+const page_size = 12;
 
 // generic funcion for get data
 async function get_data(data, formData = null) {
@@ -13,19 +18,18 @@ async function get_data(data, formData = null) {
           return await response.json();
      } catch (error) { console.log(error); }
 }
-// generic funcion for get data
-async function get_data_for_post(data, formData = null) {
-     let url = `${baseUrl}${data}`;
-     let options = { method: 'GET', headers: { 'X-CSRFToken': csrftoken } };
-     url = formData ? `${url}?${new URLSearchParams(formData)}` : url;
-     // let options = formData ? { method: 'GET', headers: { 'X-CSRFToken': csrftoken } } : null;
-     // { method: 'POST', body: formData, headers: { 'X-CSRFToken': csrftoken } } :
-     console.log('url', url);
-     try {
-          let res = await fetch(url, options);
-          return await res.json();
-     } catch (error) { console.log(error); }
-}
+// // generic funcion for get data
+// async function get_data_for_post(data, formData = null) {
+//      let url = `${baseUrl}${data}`;
+//      let options = { method: 'GET', headers: { 'X-CSRFToken': csrftoken } };
+//      url = formData ? `${url}?${new URLSearchParams(formData)}` : url;
+//      // let options = formData ? { method: 'GET', headers: { 'X-CSRFToken': csrftoken } } : null;
+//      // { method: 'POST', body: formData, headers: { 'X-CSRFToken': csrftoken } } :
+//      try {
+//           let res = await fetch(url, options);
+//           return await res.json();
+//      } catch (error) { console.log(error); }
+// }
 
 
 // render category data in a id select
@@ -68,19 +72,50 @@ async function render_products(data = null) {
      });
      let container = document.getElementById('products_list');
      container.innerHTML = html;
+
+
+     // html for render section paginate
+     const previous = products.previous ? new URL(products.previous).searchParams.get('page') : null;
+     const next = products.next ? new URL(products.next).searchParams.get('page') : null;
+
+     let previous_page = `<li class="page-item ${!previous ? 'disabled' : ''}"> <button class="page-link" onclick="load_for_paginate(${previous});">Anterior</button></li>`;
+     let next_page = `<li class="page-item ${!next ? 'disabled' : ''}"> <button class="page-link" onclick="load_for_paginate(${next});">Siguiente</button></li>`;
+
+     // products.count
+     for (let i = 0, page = 1; i <= products.count; i += page_size, page++) {
+          previous_page += `<li class="page-item ${page == next - 1 ? 'active' : ''}"><button class="page-link" onclick="load_for_paginate(${page});">${page}</button></li>`;
+     }
+     let paginate = document.getElementById('pagination');
+     paginate.innerHTML = previous_page + next_page;
+
 }
+// function for filter products for id category with paginate
 function filter_for_category(id = null) {
      if (id) {
           render_products({ category: id });
      }
-}
+}     // products.count
 
+// function for filter products for name contains with paginate
 function filter_products_for_name(name = null) {
      if (name) {
           let formData = new FormData();
           formData.append('name', name)
           render_products(formData);
      }
+}
+
+// function for render previus or next paginate for produts
+function load_for_paginate(page = 1) {
+     if (page) {
+          let formData = new FormData();
+          formData.append('page', page)
+          render_products(formData);
+     }
+}
+// Scroll to top page
+function scrollToTop() {
+     rootElement.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 // functions and events using jquery
@@ -95,5 +130,10 @@ $("#btnSubmit").click(function () {
      filter_products_for_name(value);
 });
 
+$("#scrollToTopBtn").click(function () {
+     scrollToTop();
+});
+
 render_products();
 render_categories();
+
