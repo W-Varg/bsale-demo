@@ -92,6 +92,7 @@ DATABASES = {
         'PASSWORD': 'bsale_test',
         'HOST': 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
         'PORT': '3306',
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 # DATABASE_URL=mysql://bsale_test:bsale_test@mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com:3306/bsale_test
