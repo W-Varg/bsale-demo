@@ -4,6 +4,9 @@ This project is an example for bsale, this is a store base with card for show pr
 
 In this projec was used django in backend, django_restframework for created API and frond was used bootstrap v.5.0 for styles, too js native and some jquery too.
 
+**[Repository Code](https://github.com/W-Varg/bsale-demo)** is in <https://github.com/W-Varg/bsale-demo>
+**[Demo deployed ](https://demo-bsale.herokuapp.com)** this link <https://demo-bsale.herokuapp.com>
+
 ## Requirements
   1. python >= 3.8
   2. django >= 3.2
@@ -136,4 +139,4 @@ bsale-demo
 
 <!--endsec-->
 are you have doubts ??
-my email is kryshot05@gmail.com, I can absolve you some questions
+my email is <kryshot05@gmail.com>, I can absolve you some questions
